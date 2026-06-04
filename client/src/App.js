@@ -7,6 +7,11 @@ import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import VerifyOTPPage from "./pages/VerifyOTPPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import DashboardPage from "./pages/DashboardPage";
+import NewFIRPage from "./pages/NewFIRPage";
+import FIRHistoryPage from "./pages/FIRHistoryPage";
+import FIRDetailPage from "./pages/FIRDetailPage";
+import RightsPage from "./pages/RightsPage";
+import PoliceFinderPage from "./pages/PoliceFinderPage";
 
 const PrivateRoute = ({ children }) => {
   const { user } = useAuth();
@@ -25,7 +30,12 @@ const App = () => {
           <Route path="/verify-otp" element={<VerifyOTPPage />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
           <Route path="/dashboard" element={<PrivateRoute><DashboardPage /></PrivateRoute>} />
+          <Route path="/fir/new" element={<PrivateRoute><NewFIRPage /></PrivateRoute>} />
+          <Route path="/fir/history" element={<PrivateRoute><FIRHistoryPage /></PrivateRoute>} />
           <Route path="*" element={<Navigate to="/login" />} />
+          <Route path="/fir/:id" element={<PrivateRoute><FIRDetailPage /></PrivateRoute>} />
+          <Route path="/rights" element={<PrivateRoute><RightsPage /></PrivateRoute>} />
+          <Route path="/police-finder" element={<PrivateRoute><PoliceFinderPage /></PrivateRoute>} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
