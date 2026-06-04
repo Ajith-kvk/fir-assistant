@@ -65,7 +65,12 @@ const FIRHistoryPage = () => {
           />
 
           {loading ? (
-            <p className="text-slate-400 text-center py-12">Loading...</p>
+            <div className="flex flex-col gap-3">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="h-20 rounded-2xl pulse"
+                  style={{ backgroundColor: "#1e293b" }} />
+              ))}
+            </div>
           ) : filtered.length === 0 ? (
             <div className="text-center py-12">
               <p className="text-4xl mb-3">📁</p>
@@ -87,12 +92,11 @@ const FIRHistoryPage = () => {
                       <p className="text-white font-semibold">
                         {fir.crimeType || "FIR Draft"}
                       </p>
-                      <span className={`text-xs px-3 py-1 rounded-full font-medium ${
-                        fir.status === "Draft" ? "bg-yellow-600 text-white" :
-                        fir.status === "Filed" ? "bg-green-600 text-white" :
-                        fir.status === "Under Investigation" ? "bg-blue-600 text-white" :
-                        "bg-purple-600 text-white"
-                      }`}>
+                      <span className={`text-xs px-3 py-1 rounded-full font-medium ${fir.status === "Draft" ? "bg-yellow-500 bg-opacity-20 text-yellow-400" :
+                          fir.status === "Filed" ? "bg-green-500 bg-opacity-20 text-green-400" :
+                            fir.status === "Under Investigation" ? "bg-blue-500 bg-opacity-20 text-blue-400" :
+                              "bg-purple-500 bg-opacity-20 text-purple-400"
+                        }`}>
                         {fir.status}
                       </span>
                     </div>
