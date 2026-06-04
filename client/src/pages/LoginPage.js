@@ -39,14 +39,16 @@ const LoginPage = () => {
           </p>
           <div className="mt-10 flex flex-col gap-3">
             {[
-              "AI generated FIR drafts",
-              "Automatic IPC section suggestions",
-              "Case progress tracker",
-              "Know your legal rights",
+              { icon: "🤖", text: "AI generated FIR drafts" },
+              { icon: "📚", text: "Automatic IPC section suggestions" },
+              { icon: "📊", text: "Case progress tracker" },
+              { icon: "⚖️", text: "Know your legal rights" },
+              { icon: "🚔", text: "Police station finder" },
+              { icon: "📄", text: "Download FIR as PDF" },
             ].map((f) => (
-              <div key={f} className="flex items-center gap-3 text-slate-400">
-                <span className="text-blue-400 text-lg">✓</span>
-                <span>{f}</span>
+              <div key={f.text} className="flex items-center gap-3 text-slate-400">
+                <span>{f.icon}</span>
+                <span>{f.text}</span>
               </div>
             ))}
           </div>
