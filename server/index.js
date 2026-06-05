@@ -13,7 +13,21 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: process.env.CLIENT_URL || "http://localhost:3000",
+  origin: function(origin, callback) {
+    const allowedOrigins = [
+      "http://localhost:3000",
+      "https://fir-assistant.vercel.app",
+      process.env.CLIENT_URL,
+    ];
+    // Allow requests with no origin (mobile apps, curl, postman)
+    if (!origin) return callback(null, true);
+    // Remove trailing slash and check
+    const cleanOrigin = origin.replace(/\/$/, "");
+    if (allowedOrigins.some(o => o?.replace(/\/$/, "") === cleanOrigin)) {
+      return callback(null, true);
+    }
+    return callback(new Error("Not allowed by CORS"));
+  },
   credentials: true,
 }));
 app.use(express.json());
