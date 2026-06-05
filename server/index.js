@@ -5,17 +5,17 @@ const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const firRoutes = require("./routes/firRoutes");
 const aiRoutes = require("./routes/aiRoutes");
+const chatRoutes = require("./routes/chatRoutes");
+const notificationRoutes = require("./routes/notificationRoutes");
 
 dotenv.config();
-console.log("ENV Check:", {
-  port: process.env.PORT,
-  gemini: process.env.GEMINI_API_KEY ? "loaded" : "missing",
-  mongo: process.env.MONGO_URI ? "loaded" : "missing",
-});
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: process.env.CLIENT_URL || "http://localhost:3000",
+  credentials: true,
+}));
 app.use(express.json());
 
 connectDB();
@@ -23,6 +23,8 @@ connectDB();
 app.use("/api/auth", authRoutes);
 app.use("/api/fir", firRoutes);
 app.use("/api/ai", aiRoutes);
+app.use("/api/chat", chatRoutes);
+app.use("/api/notifications", notificationRoutes);
 
 app.get("/", (req, res) => res.send("FIR Assistant Server Running"));
 

@@ -12,6 +12,7 @@ import FIRHistoryPage from "./pages/FIRHistoryPage";
 import FIRDetailPage from "./pages/FIRDetailPage";
 import RightsPage from "./pages/RightsPage";
 import PoliceFinderPage from "./pages/PoliceFinderPage";
+import LegalChatPage from "./pages/LegalChatPage";
 
 const PrivateRoute = ({ children }) => {
   const { user } = useAuth();
@@ -36,6 +37,7 @@ const App = () => {
           <Route path="/fir/:id" element={<PrivateRoute><FIRDetailPage /></PrivateRoute>} />
           <Route path="/rights" element={<PrivateRoute><RightsPage /></PrivateRoute>} />
           <Route path="/police-finder" element={<PrivateRoute><PoliceFinderPage /></PrivateRoute>} />
+          <Route path="/legal-chat" element={<PrivateRoute><LegalChatPage /></PrivateRoute>} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

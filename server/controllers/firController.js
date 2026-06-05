@@ -1,4 +1,5 @@
 const FIR = require("../models/FIR");
+const { createNotification } = require("./notificationController");
 
 // Create FIR
 exports.createFIR = async (req, res) => {
@@ -32,6 +33,14 @@ exports.createFIR = async (req, res) => {
       evidenceChecklist,
       statusHistory: [{ status: "Draft", note: "FIR draft created" }],
     });
+
+    await createNotification(
+      req.user._id,
+      "FIR Draft Created",
+      `Your FIR for ${crimeType || "incident"} has been created successfully`,
+      "fir",
+      `/fir/${fir._id}`
+    );
 
     res.status(201).json(fir);
   } catch (error) {
@@ -96,6 +105,14 @@ exports.updateStatus = async (req, res) => {
     fir.status = status;
     fir.statusHistory.push({ status, note });
     await fir.save();
+
+    await createNotification(
+      req.user._id,
+      "FIR Status Updated",
+      `Your FIR status has been updated to "${status}"`,
+      "status",
+      `/fir/${fir._id}`
+    );
 
     res.json(fir);
   } catch (error) {

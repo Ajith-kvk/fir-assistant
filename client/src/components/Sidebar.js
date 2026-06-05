@@ -6,6 +6,7 @@ const links = [
   { path: "/dashboard", label: "Dashboard", icon: "📊" },
   { path: "/fir/new", label: "New FIR", icon: "📝" },
   { path: "/fir/history", label: "My FIRs", icon: "📁" },
+  { path: "/legal-chat", label: "Legal Advisor", icon: "🤖" },
   { path: "/rights", label: "Know Your Rights", icon: "⚖️" },
   { path: "/police-finder", label: "Police Stations", icon: "🚔" },
 ];
@@ -34,10 +35,9 @@ const Sidebar = () => {
               key={link.path}
               to={link.path}
               className={({ isActive }) =>
-                `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition ${
-                  isActive
-                    ? "bg-blue-600 text-white"
-                    : "text-slate-400 hover:text-white hover:bg-slate-700"
+                `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition ${isActive
+                  ? "bg-blue-600 text-white"
+                  : "text-slate-400 hover:text-white hover:bg-slate-700"
                 }`
               }
             >

@@ -1,6 +1,7 @@
 import { useAuth } from "../context/AuthContext";
 import { useNavigate, useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
+import NotificationBell from "./NotificationBell";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -41,6 +42,7 @@ const Navbar = () => {
 
       {/* Right */}
       <div className="flex items-center gap-3">
+        <NotificationBell />
         <button
           onClick={() => navigate("/fir/new")}
           className="hidden sm:flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-xl transition"
